@@ -1,0 +1,9 @@
+//TODO - hash out dimension of the working area for the recipe card grid.  From there, we will determine an image size and, thusly, a card width
+
+.card-content {
+  display: none;
+}
+
+.card-content:hover {
+  display: block;
+}
