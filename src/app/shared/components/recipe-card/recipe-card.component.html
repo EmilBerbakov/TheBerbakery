@@ -3,9 +3,17 @@ Card that takes in an image, name, and maybe description from the recipe service
 On the bottom third, there will be a gradiant background on top of the image, and the name of the recipe and the description will be there.
 There will be an on-hover expansion of the card, perhaps even expanding in such a way that the full description is readible
 -->
-<div *ngIf="recipePreview$ | async as recipePreview">
+
+
+<div *ngIf="recipeCard as recipeCard; else loading">
 <mat-card>
-  <img mat-card-image [src]="recipePreview.cardImage" [alt]="recipePreview.altText">
-  <mat-card-content class="card-content">{{recipePreview.cardContent}}</mat-card-content>
+  <img mat-card-image [src]="recipeCard.cardImage" [alt]="recipeCard.altText">
+  <mat-card-content class="card-content">{{recipeCard.cardContent}}</mat-card-content>
 </mat-card>
 </div>
+
+<ng-template #loading>
+  <mat-card>
+    <!--TODO - add loading animations here -->
+  </mat-card>
+</ng-template>

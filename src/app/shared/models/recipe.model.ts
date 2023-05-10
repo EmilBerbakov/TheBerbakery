@@ -1,4 +1,4 @@
-export interface RecipePreview  {
+export interface RecipeCard  {
   cardImage: string,
   altText: string,
   cardContent: string
