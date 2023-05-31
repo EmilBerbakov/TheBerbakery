@@ -1,12 +1,19 @@
-<div class="card-container">
-<div *ngIf="(recipeService.recipeCards$ | async) !== null; else loading">
-  <div *ngFor="let recipeCard of recipeService.recipeCards$ | async" class="card">
-    <app-recipe-card [recipeCard]="recipeCard"></app-recipe-card>
+
+
+  <div *ngIf="(recipeService.recipeCards$ | async) !== null; else loading">
+    <div class="home-container">
+      <div *ngFor="let recipeCard of recipeService.recipeCards$ | async">
+          <app-recipe-card [recipeCard]="recipeCard" />
+      </div>
     </div>
-</div>
-<ng-template #loading>
-  <div *ngFor="let item of [1,2,3,4,5,6,7,8,9]">
-    <app-recipe-card [recipeCard]="null"></app-recipe-card>
+
   </div>
-</ng-template>
-</div>
+  <ng-template #loading>
+    <div class="home-container">
+      <div *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12]">
+        <app-recipe-card [recipeCard]="null" class="wrapper"/>
+      </div>
+    </div>
+  </ng-template>
+
+

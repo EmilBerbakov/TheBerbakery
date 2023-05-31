@@ -1,5 +1,5 @@
 
-
+/*
 h1,
 h2,
 h3,
@@ -8,6 +8,7 @@ h5,
 h6 {
   margin: 8px 0;
 }
+*/
 
 p {
   margin: 0;
@@ -19,18 +20,22 @@ p {
 .toolbar-characteristics {
   position: fixed;
   top: 0;
-  box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;;
+  box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+  z-index: 9999999999;
 }
 
 .content {
-  display: flex;
-  margin: 82px auto 32px;
-  padding: 0 16px;
-  max-width: 960px;
-  flex-direction: column;
+  display: grid;
+  margin:  0 20%;
+  max-width: 60%;
   align-items: center;
 }
 
+.hack-element {
+  height: 10%;
+}
+
+/*
 svg.material-icons {
   height: 24px;
   width: auto;
@@ -134,9 +139,10 @@ svg.material-icons:not(:last-child) {
   padding: 0 1rem 1rem;
   margin: 0;
 }
-
+*/
 
 /* Responsive Styles */
+/*
 @media screen and (max-width: 767px) {
   .card-container > *:not(.circle-link) ,
   .terminal {
@@ -152,4 +158,5 @@ svg.material-icons:not(:last-child) {
     margin-left: 72px;
   }
 }
+*/
 

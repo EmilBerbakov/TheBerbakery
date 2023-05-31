@@ -1,8 +1,11 @@
 <!--TODO - look into pwa support (ng add @angular/pwa)-->
+
 <mat-toolbar color="accent" class="toolbar-characteristics">
+  <!--
   <button mat-icon-button  aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
+  -->
   <span>The Berbakery - All Things Sweet!</span>
   <span class="toolbar-spacer"></span>
   <a href="https://www.instagram.com/the_berbakery/" target="_blank">
@@ -32,9 +35,11 @@
   </a>
 </mat-toolbar>
 
+<div class="hack-element"></div>
 <div class="content" role="main">
 
   <!-- Next Steps -->
+  <!--
   <h2>Next Steps</h2>
   <p>What do you want to do next with your app?</p>
 
@@ -72,7 +77,10 @@
     </button>
   </div>
 
+  -->
+
   <!-- Terminal -->
+  <!--
   <div class="terminal" [ngSwitch]="selection.value">
       <pre *ngSwitchDefault>ng generate component xyz</pre>
       <pre *ngSwitchCase="'material'">ng add @angular/material</pre>
@@ -81,5 +89,7 @@
       <pre *ngSwitchCase="'test'">ng test</pre>
       <pre *ngSwitchCase="'build'">ng build</pre>
   </div>
+  -->
 
 <router-outlet/>
+</div>

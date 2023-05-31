@@ -1,20 +1,21 @@
-.card-container {
-  flex-wrap: wrap;
-}
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 960px;
-  align-items: center;
-}
 
-.card {
-  height: 200px;
-  width: 320px;
-  margin: 0 0px 16px;
-  padding: 16px;
-  display: flex;
-  flex-direction: row;
-  transition: all 0.2s ease-in-out;
-}
+.home-container {
+
+   --grid-layout-gap: 1em;
+   --grid-column-count: 3; /* This gets overridden by an inline style. */
+   --grid-item--min-width: 200px; /* This gets overridden by an inline style. */
+
+   /**
+    * Calculated values.
+    */
+   --gap-count: calc(var(--grid-column-count) - 1);
+   --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+   --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
+
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+   grid-gap: var(--grid-layout-gap);
+ }
+
+
+

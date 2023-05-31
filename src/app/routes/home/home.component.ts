@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.recipeService.getRecentRecipeCards(9);
+      this.recipeService.getRecentRecipeCards();
       this.recipeService.recipeCards$.pipe(distinctUntilChanged(), untilDestroyed(this)).subscribe(result => console.log(result));
   }
 }
