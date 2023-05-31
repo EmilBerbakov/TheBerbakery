@@ -1,0 +1,46 @@
+<!--TODO:
+Card that takes in an image, name, and maybe description from the recipe service.
+On the bottom third, there will be a gradient background on top of the image, and the name of the recipe and the description will be there.
+There will be an on-hover expansion of the card, perhaps even expanding in such a way that the full description is readable
+-->
+
+<!--
+<div *ngIf="recipeCard as recipeCard; else loading">
+<mat-card>
+  <mat-card-content class="card-content"><p>{{recipeCard.recipeDescription}}</p></mat-card-content>
+</mat-card>
+</div>
+
+
+-->
+
+<span *ngIf="recipeCard as recipeCard; else loading" class="card-wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{recipeCard.recipeName}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="recipeCard.recipeImageUrl" [alt]="recipeCard.recipeDescription" >
+    <mat-card-content>
+      <p>
+        {{recipeCard.recipeDescription}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</span>
+
+
+<ng-template #loading>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-progress-bar mode="indeterminate">
+        </mat-progress-bar>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <mat-spinner></mat-spinner>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
