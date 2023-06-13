@@ -6,18 +6,18 @@
         <mat-icon>close</mat-icon>
       </button>
     </mat-dialog-actions>
-  <h1 matDialogTitle>{{data.recipeName}}  </h1>
+  <h1 matDialogTitle>{{data.recipeName}}</h1>
 
   <mat-dialog-content class="mat-typography">
     <img [src]="data.recipeImageUrl" [alt]="data.recipeDescription">
       <p><i>{{data.recipeBlurb}}</i></p>
       <h2 matListItemTitle class="heading-class">Ingredients</h2>
       <mat-list>
-        <mat-list-item *ngFor="let ingredient of data.recipeIngredients">{{ ingredient.ingredientDescription }}</mat-list-item>
+        <mat-list-item *ngFor="let ingredient of data.recipeIngredients"><p>{{ ingredient.ingredientDescription }}</p></mat-list-item>
       </mat-list>
       <h2 matListItemTitle class="heading-class">Recipe</h2>
       <mat-list>
-        <mat-list-item *ngFor="let step of data.recipeSteps">{{ step.recipeStepInstruction }}</mat-list-item>
+        <mat-list-item *ngFor="let step of data.recipeSteps"><p>{{ step.recipeStepInstruction }}</p></mat-list-item>
       </mat-list>
 
 

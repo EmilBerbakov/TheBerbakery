@@ -6,7 +6,7 @@
     <mat-icon>menu</mat-icon>
   </button>
   -->
-  <span>The Berbakery - All Things Sweet!</span>
+  <span>The Berbakery</span>
   <span class="toolbar-spacer"></span>
   <a href="https://www.instagram.com/the_berbakery/" target="_blank">
   <button mat-icon-button>
@@ -33,6 +33,17 @@
       </svg>
     </button>
   </a>
+  <!--TODO - add the search form
+  this button is going to open the search form, which will either:
+  1. slide down from the bottom of the toolbar
+  2. be a material dialog
+  in either event, it should draw a shroud over the main content and make it non-interactable until you exit out of the search
+  ... or not
+  Honestly, it might be better to have the search slide down from the bottom of the toolbar, and push the main body down
+  -->
+  <button mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
 </mat-toolbar>
 
 <div class="hack-element"></div>
