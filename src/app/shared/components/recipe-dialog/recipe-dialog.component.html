@@ -1,0 +1,30 @@
+
+  <div class="content">
+    <mat-dialog-actions align="end">
+      <button mat-icon-button color="accent" aria-label="Print recipe"><mat-icon>print</mat-icon></button>
+      <button mat-icon-button color="warn" aria-label="Close recipe" matDialogClose>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-dialog-actions>
+  <h1 matDialogTitle>{{data.recipeName}}  </h1>
+
+  <mat-dialog-content class="mat-typography">
+    <img [src]="data.recipeImageUrl" [alt]="data.recipeDescription">
+      <p><i>{{data.recipeBlurb}}</i></p>
+      <h2 matListItemTitle class="heading-class">Ingredients</h2>
+      <mat-list>
+        <mat-list-item *ngFor="let ingredient of data.recipeIngredients">{{ ingredient.ingredientDescription }}</mat-list-item>
+      </mat-list>
+      <h2 matListItemTitle class="heading-class">Recipe</h2>
+      <mat-list>
+        <mat-list-item *ngFor="let step of data.recipeSteps">{{ step.recipeStepInstruction }}</mat-list-item>
+      </mat-list>
+
+
+
+
+  </mat-dialog-content>
+
+</div>
+
+

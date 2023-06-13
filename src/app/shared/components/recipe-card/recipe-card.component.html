@@ -14,8 +14,8 @@ There will be an on-hover expansion of the card, perhaps even expanding in such 
 
 -->
 
-<span *ngIf="recipeCard as recipeCard; else loading" class="card-wrapper">
-  <mat-card>
+<span *ngIf="recipeCard as recipeCard; else loading">
+  <mat-card class="card-container" (click)="openRecipeCard()">
     <mat-card-header>
       <mat-card-title>{{recipeCard.recipeName}}</mat-card-title>
     </mat-card-header>
@@ -30,17 +30,15 @@ There will be an on-hover expansion of the card, perhaps even expanding in such 
 
 
 <ng-template #loading>
-  <mat-card>
+  <mat-card style="max-width: 300px;">
     <mat-card-header>
-      <mat-card-title>
-        <mat-progress-bar mode="indeterminate">
-        </mat-progress-bar>
-      </mat-card-title>
+        <mat-progress-bar mode="indeterminate"/>
     </mat-card-header>
-    <mat-card-content>
-      <p>
-        <mat-spinner></mat-spinner>
-      </p>
+    <mat-card-content style="align-items: center;">
+        <mat-spinner/>
     </mat-card-content>
+    <mat-card-footer>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
   </mat-card>
 </ng-template>
