@@ -19,7 +19,8 @@ There will be an on-hover expansion of the card, perhaps even expanding in such 
     <mat-card-header>
       <mat-card-title>{{recipeCard.recipeName}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="recipeCard.recipeImageUrl" [alt]="recipeCard.recipeDescription" >
+   <!-- <img mat-card-image [src]="recipeCard.recipeImageUrl" [alt]="recipeCard.recipeDescription" > -->
+   <img mat-card-image src="../../../../assets/test-img.jpg" [alt]="recipeCard.recipeDescription">
     <mat-card-content>
       <p>
         {{recipeCard.recipeDescription}}

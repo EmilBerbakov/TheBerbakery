@@ -9,20 +9,19 @@
   <h1 matDialogTitle>{{data.recipeName}}</h1>
 
   <mat-dialog-content class="mat-typography">
-    <img [src]="data.recipeImageUrl" [alt]="data.recipeDescription">
-      <p><i>{{data.recipeBlurb}}</i></p>
-      <h2 matListItemTitle class="heading-class">Ingredients</h2>
-      <mat-list>
-        <mat-list-item *ngFor="let ingredient of data.recipeIngredients"><p>{{ ingredient.ingredientDescription }}</p></mat-list-item>
-      </mat-list>
-      <h2 matListItemTitle class="heading-class">Recipe</h2>
-      <mat-list>
-        <mat-list-item *ngFor="let step of data.recipeSteps"><p>{{ step.recipeStepInstruction }}</p></mat-list-item>
-      </mat-list>
-
-
-
-
+    <!-- <img [src]="data.recipeImageUrl" [alt]="data.recipeDescription"> -->
+    <div style="display: flex; justify-content: center;">
+    <img mat-card-image src="../../../../assets/test-img.jpg" [alt]="data.recipeDescription">
+    </div>
+    <p style="text-align: center;"><i>{{data.recipeBlurb}}</i></p>
+    <h2 matListItemTitle class="heading-class">Ingredients</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let ingredient of data.recipeIngredients"><p>{{ ingredient.ingredientDescription }}</p></mat-list-item>
+    </mat-list>
+    <h2 matListItemTitle class="heading-class">Recipe</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let step of data.recipeSteps"><p>{{ step.recipeStepInstruction }}</p></mat-list-item>
+    </mat-list>
   </mat-dialog-content>
 
 </div>
