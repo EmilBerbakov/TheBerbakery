@@ -21,5 +21,9 @@ export class RecipeDialogComponent {
     console.log(this.data.recipeIngredients)
   }
 
+  printMethod(): void {
+    window.print();
+  }
+
 
 }

@@ -7,3 +7,24 @@ p, h1, h2 {
   white-space: pre-wrap;
 }
 
+p {
+  margin: 0;
+}
+
+@media print {
+  //Hide everything
+  body * {
+    visibility: hidden;
+  }
+  //For whatever you want to print, wrap it in a div with this id
+  #dataToPrint * {
+    visibility: visible;
+  }
+  // For
+  .content {
+    position: fixed;
+    top:0;
+  }
+
+
+}

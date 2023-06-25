@@ -24,7 +24,7 @@ export class RecipeCardComponent {
   openRecipeCard(): void {
     //console.log("hi")
     this.dialog.open(RecipeDialogComponent, {
-      width: "80%",
+      width: "100%",
       data: {
         ...this.recipeCard
       }
