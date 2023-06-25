@@ -22,7 +22,6 @@ export class RecipeCardComponent {
   constructor(private dialog: MatDialog) {}
 
   openRecipeCard(): void {
-    //console.log("hi")
     this.dialog.open(RecipeDialogComponent, {
       width: "100%",
       data: {
