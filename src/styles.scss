@@ -11,6 +11,19 @@ p {
   margin: 0;
 }
 
+.mdc-list-item.mdc-list-item--with-one-line {
+  height:auto;
+}
+
+.heading-class {
+  line-height: normal;
+  padding-bottom: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  margin-block-start: 0px;
+}
+
 @media print {
   //Hide everything
   body * {
@@ -26,6 +39,4 @@ p {
     top: 0;
     left: 0;
   }
-
-
 }

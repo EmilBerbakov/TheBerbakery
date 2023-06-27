@@ -13,6 +13,10 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'recipe/:recipeID',
+    loadComponent: () => import('./routes/recipe-page/recipe-page.component').then(m => m.RecipePageComponent)
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full'
