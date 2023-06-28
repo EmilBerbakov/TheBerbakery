@@ -1,7 +1,24 @@
 
   <div class="content">
     <mat-dialog-actions align="end">
-      <button mat-icon-button color="accent" aria-label="Print recipe" (click)="printMethod()"><mat-icon>print</mat-icon></button>
+      <!-- <button mat-icon-button color="accent" aria-label="Print recipe" (click)="printMethod()"><mat-icon>print</mat-icon></button> -->
+      <button mat-icon-button color="accent" [matMenuTriggerFor]="options" aria-label="menu icon-button">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #options="matMenu">
+        <button mat-menu-item (click)="shareMethod()">
+          <mat-icon color="accent" aria-label="Share recipe">share</mat-icon>
+          <span>Share</span>
+        </button>
+        <button mat-menu-item (click)="printMethod()">
+          <mat-icon color="accent" aria-label="Print recipe">print</mat-icon>
+          <span>Print</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon color="accent" aria-label="Download recipe">file_download</mat-icon>
+          <span>Download</span>
+        </button>
+      </mat-menu>
       <button mat-icon-button color="warn" aria-label="Close recipe" matDialogClose>
         <mat-icon>close</mat-icon>
       </button>

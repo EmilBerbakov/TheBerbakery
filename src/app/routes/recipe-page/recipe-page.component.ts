@@ -3,13 +3,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { Recipe } from 'src/app/shared/models/recipe.model';
-import { Observable, filter, first, last, take, tap } from 'rxjs';
+import { Observable, filter, first, tap } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-recipe-page',
   standalone: true,
-  imports: [CommonModule, MatListModule ],
+  imports: [CommonModule, MatListModule, MatIconModule ],
   templateUrl: './recipe-page.component.html',
   styleUrls: ['./recipe-page.component.scss'],
   providers: [RecipeService]
