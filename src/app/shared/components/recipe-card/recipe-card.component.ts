@@ -6,6 +6,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { RecipeDialogComponent } from '../recipe-dialog/recipe-dialog.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { RecipeDialogComponent } from '../recipe-dialog/recipe-dialog.component'
 export class RecipeCardComponent {
   @Input({ required: true }) recipeCard?: Recipe | null;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog,
+              private router: Router) {}
 
   openRecipeCard(): void {
     this.dialog.open(RecipeDialogComponent, {
@@ -27,7 +29,10 @@ export class RecipeCardComponent {
       data: {
         ...this.recipeCard
       }
+    });
+  }
 
-    })
+  recipeNavigation(): void {
+    this.router.navigate([`/recipe/${ this.recipeCard?.recipeId }`]);
   }
 }
