@@ -5,7 +5,8 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./routes/home/home.component').then(m => m.HomeComponent),
-    title: 'Welcome to The Berbakery!'
+    title: 'Welcome to The Berbakery!',
+    data: { animation: 'Home' }
   },
   {
     path: 'home',
@@ -14,7 +15,8 @@ export const routes: Routes = [
   },
   {
     path: 'recipe/:recipeID',
-    loadComponent: () => import('./routes/recipe-page/recipe-page.component').then(m => m.RecipePageComponent)
+    loadComponent: () => import('./routes/recipe-page/recipe-page.component').then(m => m.RecipePageComponent),
+    data: { animation: 'Recipe' }
   },
   {
     path: '**',

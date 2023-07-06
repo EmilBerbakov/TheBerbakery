@@ -1,8 +1,9 @@
 import { Recipe } from './../models/recipe.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, Observable, filter, first, isEmpty, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, filter, first, isEmpty, map, of, tap } from 'rxjs';
 
 @UntilDestroy({ checkProperties: true })
 @Injectable()
@@ -10,7 +11,8 @@ export class RecipeService {
   _recipeCards = new BehaviorSubject<Recipe[] | null>(null);
   recipeCards$ = this._recipeCards.asObservable();
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   publicURI = 'http://66.191.89.135:5000';
@@ -32,11 +34,11 @@ export class RecipeService {
         fromObject: {'recipeIds': recipeIDs ?? ''}
       })
       .set('recipeName', recipeName ?? '');
-      this.http.get<Recipe[]>(URL, { params }).pipe(first(), tap(() => console.log('buh'))).subscribe(value => {
-        if (value) {
-          this._recipeCards.next(value);
-        }
-      })
+      this.http.get<Recipe[]>(URL, { params }).pipe(first(),
+      catchError(() => this.router.navigate(['*'])))
+      .subscribe(value => {
+        this._recipeCards.next(value as Recipe[])
+        });
 
 
 

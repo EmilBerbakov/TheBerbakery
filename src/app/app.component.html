@@ -101,6 +101,7 @@
       <pre *ngSwitchCase="'build'">ng build</pre>
   </div>
   -->
-
-<router-outlet/>
+<div [@routeAnimations]="o && o.activatedRouteData && o.activatedRouteData['animation']" >
+<router-outlet #o="outlet" />
+</div>
 </div>
