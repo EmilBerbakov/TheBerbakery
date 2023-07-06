@@ -1,3 +1,7 @@
+.mdc-list-item.mdc-list-item--with-one-line {
+  height:auto;
+}
+
 .heading-class {
   line-height: normal;
   padding-bottom: 0px;
@@ -7,9 +11,9 @@
   margin-block-start: 0px;
 }
 
-.mdc-list-item.mdc-list-item--with-one-line {
-    height:auto;
+.title-button-div {
+  display: flex;
+  flex-direction: row;
 }
-
 
 

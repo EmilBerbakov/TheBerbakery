@@ -20,12 +20,14 @@ p {
   #dataToPrint * {
     visibility: visible;
   }
-  // For
+
+  #dataToNotPrint * {
+    visibility: hidden;
+  }
+
   .content {
     position: fixed;
     top: 0;
     left: 0;
   }
-
-
 }

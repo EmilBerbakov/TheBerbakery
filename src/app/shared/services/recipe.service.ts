@@ -1,8 +1,10 @@
+import { Recipe } from './../models/recipe.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, first } from 'rxjs';
-import { Recipe } from 'src/app/shared/models/recipe.model';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { BehaviorSubject, Observable, filter, first, isEmpty, map, of, tap } from 'rxjs';
 
+@UntilDestroy({ checkProperties: true })
 @Injectable()
 export class RecipeService {
   _recipeCards = new BehaviorSubject<Recipe[] | null>(null);
@@ -11,28 +13,45 @@ export class RecipeService {
     private http: HttpClient
   ) { }
 
-  getRecipeCards(recipeIDs?: number[], recipeName?: string): void {
-    const URL = 'https://localhost:44322/RecipeCard.API/recipeCard/recipeCards';
-    let params = new HttpParams({
-      fromObject: {'recipeIds': recipeIDs ?? ''}
-    })
-    .set('recipeName', recipeName ?? '');
-    this.http.get<Recipe[]>(URL, { params }).pipe(first()).subscribe(value => {
-      if (value) {
-        this._recipeCards.next(value);
+  publicURI = 'http://66.191.89.135:5000';
+  privateURI = 'https://localhost:44322';
+
+  getRecipeCards(recipeIDs?: string[], recipeName?: string): Observable<Recipe[]> | void {
+
+    if (localStorage.getItem('recipes') !== null) {
+      console.log(typeof recipeIDs![0]);
+      let recipes: Recipe[] = JSON.parse(localStorage.getItem('recipes') || '{}').filter((recipe: Recipe) => recipeIDs?.includes(recipe.recipeId.toString()) || recipeName === recipe.recipeName);
+      if (recipes.length > 0) {
+        console.log(recipes)
+        return of(recipes);
       }
-    })
+    }
+
+      const URL = `${this.privateURI}/RecipeCard.API/recipeCard/recipeCards`;
+      let params = new HttpParams({
+        fromObject: {'recipeIds': recipeIDs ?? ''}
+      })
+      .set('recipeName', recipeName ?? '');
+      this.http.get<Recipe[]>(URL, { params }).pipe(first(), tap(() => console.log('buh'))).subscribe(value => {
+        if (value) {
+          this._recipeCards.next(value);
+        }
+      })
+
+
 
   }
 
   getRecentRecipeCards(topX?: number): void {
-    const URL = 'https://localhost:44322/RecipeCard.API/recipeCard/recentRecipeCards';
+    const URL = `${this.privateURI}/RecipeCard.API/recipeCard/recentRecipeCards`;
     let params = new HttpParams()
     .set('topX', topX ?? 12);
-    this.http.get<Recipe[]>(URL, { params }).pipe(first()).subscribe((value) => {
-      if (value) {
-        this._recipeCards.next(value);
+    this.http.get<Recipe[]>(URL, { params }).pipe(first()).subscribe((values) => {
+      if (values) {
+        this._recipeCards.next(values);
+        localStorage.setItem('recipes', JSON.stringify(values));
       }
-    })
+    });
+
   }
 }
