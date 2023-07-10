@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
-import { distinctUntilChanged } from 'rxjs';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { distinctUntilChanged, filter } from 'rxjs';
 import { RecipeCardComponent } from 'src/app/shared/components/recipe-card/recipe-card.component';
-@UntilDestroy({ checkProperties: true })
 @Component({
   standalone: true,
   imports: [CommonModule, RecipeCardComponent],
@@ -23,6 +21,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
       this.recipeService.getRecentRecipeCards();
-      this.recipeService.recipeCards$.pipe(distinctUntilChanged(), untilDestroyed(this));
+      this.recipeService.recipeCards$.pipe(distinctUntilChanged(), filter(Boolean));
   }
 }
