@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { slideInAnimation } from './slide-animation';
+import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MatToolbarModule, MatIconModule, MatButtonModule, RouterModule],
+  imports: [CommonModule, RouterOutlet, RouterModule, ToolbarComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [ slideInAnimation ]
