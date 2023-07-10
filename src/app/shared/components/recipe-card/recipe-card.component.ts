@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 
 export class RecipeCardComponent {
+
   @Input({ required: true }) recipeCard?: Recipe | null;
 
   constructor(private router: Router) {}

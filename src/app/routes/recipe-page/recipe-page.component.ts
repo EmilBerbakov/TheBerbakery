@@ -3,15 +3,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { Recipe } from 'src/app/shared/models/recipe.model';
-import { Observable, filter, first, tap } from 'rxjs';
+import { Observable, filter, tap } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-@UntilDestroy({ checkProperties: true })
+
 @Component({
   selector: 'app-recipe-page',
   standalone: true,
@@ -21,6 +20,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   providers: [RecipeService]
 })
 export class RecipePageComponent implements OnInit {
+
 
 //! Even though I'm expecting a number here, passing it in to the recipe service converts it to a string
 @Input() recipeID?: string;
@@ -37,7 +37,7 @@ ngOnInit(): void {
   let inStorage = this.recipeService.getRecipeCards([this.recipeID!]);
 
   if(!inStorage) {
-    this.recipe$ = this.recipeService.recipeCards$.pipe(filter(Boolean), untilDestroyed(this), tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));
+    this.recipe$ = this.recipeService.recipeCards$.pipe(filter(Boolean), tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));
     return;
   }
     this.recipe$ = inStorage.pipe(tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));

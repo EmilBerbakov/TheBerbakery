@@ -2,10 +2,8 @@ import { Recipe } from './../models/recipe.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, Observable, catchError, filter, first, isEmpty, map, of, tap } from 'rxjs';
 
-@UntilDestroy({ checkProperties: true })
 @Injectable()
 export class RecipeService {
   _recipeCards = new BehaviorSubject<Recipe[] | null>(null);
