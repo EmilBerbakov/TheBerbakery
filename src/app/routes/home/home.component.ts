@@ -12,15 +12,10 @@ import { RecipeCardComponent } from 'src/app/shared/components/recipe-card/recip
 
 })
 
-export class HomeComponent implements OnInit {
-
+export class HomeComponent {
+  recipeCards$ = this.recipeService.getRecentRecipeCards().pipe(filter(Boolean));
   count = Array(12);
   constructor(
     public recipeService: RecipeService
   ) {}
-
-  ngOnInit(): void {
-      this.recipeService.getRecentRecipeCards();
-      this.recipeService.recipeCards$.pipe(distinctUntilChanged(), filter(Boolean));
-  }
 }

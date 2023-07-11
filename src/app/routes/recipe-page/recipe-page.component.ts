@@ -23,9 +23,10 @@ export class RecipePageComponent implements OnInit {
 
 
 //! Even though I'm expecting a number here, passing it in to the recipe service converts it to a string
-@Input() recipeID?: string;
+@Input() recipeID!: number;
 recipe$?: Observable<Recipe[]>;
 url: string;
+recipeArray: number[] = [];
 
 constructor(public recipeService: RecipeService,
             private titleService: Title,
@@ -34,15 +35,9 @@ constructor(public recipeService: RecipeService,
             }
 
 ngOnInit(): void {
-  let inStorage = this.recipeService.getRecipeCards([this.recipeID!]);
 
-  if(!inStorage) {
-    this.recipe$ = this.recipeService.recipeCards$.pipe(filter(Boolean), tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));
-    return;
-  }
-    this.recipe$ = inStorage.pipe(tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));
-
-
+  this.recipeArray.push(this.recipeID);
+  this.recipe$ = this.recipeService.getRecipeCards({ recipeIDs: this.recipeArray }).pipe(filter(Boolean), tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));
 
 }
 

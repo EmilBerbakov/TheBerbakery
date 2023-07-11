@@ -1,6 +1,6 @@
 
 
-  <div *ngIf="(recipeService.recipeCards$ | async) !== null; else loading">
+  <div *ngIf="(recipeCards$ | async) !== null; else loading">
     <div class="home-container">
       <div *ngFor="let recipeCard of recipeService.recipeCards$ | async">
           <app-recipe-card [recipeCard]="recipeCard" />
