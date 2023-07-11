@@ -26,12 +26,10 @@ export class RecipeService {
 
 
     if (localStorage.getItem('recipes') !== null) {
-      console.log(recipeIDNums)
       let recipes: Recipe[] = JSON.parse(localStorage.getItem('recipes') || '{}').filter((recipe: Recipe) => {
         return recipeIDNums.includes(recipe.recipeId) || searchParams.recipeName === recipe.recipeName
       });
       if (recipes.length > 0) {
-        console.log(recipes)
         return of(recipes);
       }
     }
