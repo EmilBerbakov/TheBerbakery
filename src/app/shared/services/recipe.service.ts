@@ -2,7 +2,8 @@ import { Recipe } from './../models/recipe.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, catchError, filter, first, isEmpty, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, first, of } from 'rxjs';
+import { environment } from '@environment';
 
 @Injectable()
 export class RecipeService {
@@ -13,8 +14,6 @@ export class RecipeService {
     private router: Router
   ) { }
 
-  publicURI = 'http://66.191.89.135:5000';
-  privateURI = 'https://localhost:44322';
 
   getRecipeCards(recipeIDs?: string[], recipeName?: string): Observable<Recipe[]> | void {
 
@@ -27,7 +26,7 @@ export class RecipeService {
       }
     }
 
-      const URL = `${this.privateURI}/RecipeCard.API/recipeCard/recipeCards`;
+      const URL = `${environment.urls.api}/RecipeCard.API/recipeCard/recipeCards`;
       let params = new HttpParams({
         fromObject: {'recipeIds': recipeIDs ?? ''}
       })
@@ -43,7 +42,7 @@ export class RecipeService {
   }
 
   getRecentRecipeCards(topX?: number): void {
-    const URL = `${this.privateURI}/RecipeCard.API/recipeCard/recentRecipeCards`;
+    const URL = `${environment.urls.api}/RecipeCard.API/recipeCard/recentRecipeCards`;
     let params = new HttpParams()
     .set('topX', topX ?? 12);
     this.http.get<Recipe[]>(URL, { params }).pipe(first()).subscribe((values) => {
