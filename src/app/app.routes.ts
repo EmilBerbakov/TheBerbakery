@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./routes/home/home.component').then(m => m.HomeComponent),
+    loadComponent: () => import('./routes/home/home.component'),
     title: 'Welcome to The Berbakery!',
     data: { animation: 'Home' }
   },
@@ -15,7 +15,7 @@ export const routes: Routes = [
   },
   {
     path: 'recipe/:recipeID',
-    loadComponent: () => import('./routes/recipe-page/recipe-page.component').then(m => m.RecipePageComponent),
+    loadComponent: () => import('./routes/recipe-page/recipe-page.component'),
     data: { animation: 'Recipe' }
   },
   {
