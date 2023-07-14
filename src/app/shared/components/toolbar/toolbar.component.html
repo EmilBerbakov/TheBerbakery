@@ -1,12 +1,9 @@
 <mat-toolbar color="primary" class="toolbar-characteristics">
-  <!--
-
-  -->
+  <mat-toolbar-row>
   <span><a [routerLink]="['/']" class="toolbar-title">The Berbakery</a></span>
   <span class="toolbar-spacer"></span>
-  <app-recipe-search/>
   <div id="large-monitor-menu">
-
+  <span class=row-container><app-recipe-search/></span>
   <a href="https://www.instagram.com/the_berbakery/" target="_blank">
   <button mat-icon-button>
     <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
@@ -33,7 +30,10 @@
       </button>
     </a>
   </div>
-  <div id="small-monitor-menu">
+</mat-toolbar-row>
+<mat-toolbar-row id="small-monitor-menu" style="align-items: start; ">
+  <app-recipe-search/>
+  <span class="toolbar-spacer"></span>
   <button mat-icon-button  [matMenuTriggerFor]="options" aria-label="menu button">
     <mat-icon>menu</mat-icon>
   </button>
@@ -66,13 +66,5 @@
       <span>TikTok</span>
     </a>
   </mat-menu>
-  </div>
-  <!--TODO - add the search form
-  this button is going to open the search form, which will either:
-  1. slide down from the bottom of the toolbar
-  2. be a material dialog
-  in either event, it should draw a shroud over the main content and make it non-interactable until you exit out of the search
-  ... or not
-  Honestly, it might be better to have the search slide down from the bottom of the toolbar, and push the main body down
-  -->
+</mat-toolbar-row>
 </mat-toolbar>

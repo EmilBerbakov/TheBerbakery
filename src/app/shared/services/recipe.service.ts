@@ -1,6 +1,6 @@
 import { Recipe } from './../models/recipe.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, catchError, first, of, filter } from 'rxjs';
 import { environment } from '@environment';
@@ -9,11 +9,9 @@ import { environment } from '@environment';
 export class RecipeService {
   _recipeCards = new BehaviorSubject<Recipe[]>([]);
   recipeCards$ = this._recipeCards.asObservable();
-  constructor(
-    private http: HttpClient,
-    private router: Router
-  ) { }
 
+  http = inject(HttpClient);
+  router = inject(Router);
 
   getRecipeCards(searchParams: { recipeIDs?: number[], recipeName?: string }): Observable<Recipe[]>{
 
@@ -36,7 +34,7 @@ export class RecipeService {
 
       const URL = `${environment.urls.api}/RecipeCard.API/recipeCard/recipeCards`;
       let params = new HttpParams({
-        fromObject: {'recipeIds': searchParams.recipeIDs ?? ''}
+        fromObject: {'recipeIds': searchParams.recipeIDs ?? []}
       })
       .set('recipeName', searchParams.recipeName ?? '');
       this.http.get<Recipe[]>(URL, { params }).pipe(first(),
@@ -44,6 +42,7 @@ export class RecipeService {
       .subscribe(value => {
         if (typeof value !== 'boolean') {
           this._recipeCards.next(value as Recipe[])
+          console.log(value)
         }
         });
       return this.recipeCards$
@@ -55,8 +54,8 @@ export class RecipeService {
     const URL = `${environment.urls.api}/RecipeCard.API/recipeCard/recentRecipeCards`;
     let params = new HttpParams()
     .set('topX', topX ?? 12);
-    this.http.get<Recipe[]>(URL, { params }).pipe(first(), catchError(() => this.router.navigate(['*']))).subscribe((values) => {
-      if (typeof values !== 'boolean') {
+    this.http.get<Recipe[]>(URL, { params }).pipe(first(), catchError(() => of(JSON.parse(localStorage.getItem('recipes') || '{}') as Recipe[]))).subscribe((values) => {
+      if (values) {
         this._recipeCards.next(values);
         localStorage.setItem('recipes', JSON.stringify(values));
       }

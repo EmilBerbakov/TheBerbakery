@@ -1,12 +1,12 @@
 import { MatListModule } from '@angular/material/list';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { Recipe } from 'src/app/shared/models/recipe.model';
 import { Observable, filter, tap } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 
@@ -19,26 +19,20 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrls: ['./recipe-page.component.scss'],
   providers: [RecipeService]
 })
-export class RecipePageComponent implements OnInit {
+export default class  RecipePageComponent implements OnInit {
 
+recipeService = inject(RecipeService);
+titleService = inject(Title);
+router = inject(Router);
 
 //! Even though I'm expecting a number here, passing it in to the recipe service converts it to a string
 @Input() recipeID!: number;
 recipe$?: Observable<Recipe[]>;
-url: string;
-recipeArray: number[] = [];
-
-constructor(public recipeService: RecipeService,
-            private titleService: Title,
-            private router: Router){
-              this.url = this.router.url;
-            }
+url: string = this.router.url;
 
 ngOnInit(): void {
-
-  this.recipeArray.push(this.recipeID);
-  this.recipe$ = this.recipeService.getRecipeCards({ recipeIDs: this.recipeArray }).pipe(filter(Boolean), tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));
-
+  let recipeArray: number[] = [Number(this.recipeID)];
+  this.recipe$ = this.recipeService.getRecipeCards({ recipeIDs: recipeArray }).pipe(filter(Boolean), tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));
 }
 
 printMethod(): void {

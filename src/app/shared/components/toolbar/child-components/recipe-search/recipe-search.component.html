@@ -1,10 +1,10 @@
 
 <!--TODO - make this usable on mobile, right now, clicking on this in the mat menu to type in it closes the menu-->
-<div class="row-container">
-<form [formGroup]="formGroup" (submit)="getRecipes()">
-<span><input class="input-rounding" placeholder="Search for a recipe" formControlName="recipeName"></span>
+
+<form [formGroup]="formGroup" (submit)="getRecipes()" class="row-container">
+<input class="input-rounding" placeholder="Search for a recipe" formControlName="recipeName">
 <span><button mat-icon-button type="submit">
   <mat-icon>search</mat-icon>
 </button></span>
 </form>
-</div>
+
