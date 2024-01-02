@@ -1,45 +1,51 @@
-<span *ngIf="recipe$ | async as recipes">
-  <div class="content" id="dataToPrint">
-    <div class="title-button-div">
-      <h1>
-        {{ recipes[0].recipeName }}
-      </h1>
+@if (recipe$ | async; as recipes) {
+  <span>
+    <div class="content" id="dataToPrint">
+      <div class="title-button-div">
+        <h1>
+          {{ recipes[0].recipeName }}
+        </h1>
         <span style="margin-left: auto;" id="dataToNotPrint">
           <button mat-icon-button color="primary" aria-label="back to home" (click)="backMethod()">
-          <mat-icon>arrow_back</mat-icon>
+            <mat-icon>arrow_back</mat-icon>
           </button>
           <button mat-icon-button color="primary" [matMenuTriggerFor]="options" aria-label="menu icon-button">
             <mat-icon>more_vert</mat-icon>
           </button>
         </span>
-      <mat-menu #options="matMenu">
-        <button mat-menu-item (click)="shareMethod()">
-          <mat-icon color="primary" aria-label="Share recipe">share</mat-icon>
-          <span>Share</span>
-        </button>
-        <button mat-menu-item (click)="printMethod()">
-          <mat-icon color="primary" aria-label="Print recipe">print</mat-icon>
-          <span>Print</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon color="primary" aria-label="Download recipe">file_download</mat-icon>
-          <span>Download</span>
-        </button>
-      </mat-menu>
+        <mat-menu #options="matMenu">
+          <button mat-menu-item (click)="shareMethod()">
+            <mat-icon color="primary" aria-label="Share recipe">share</mat-icon>
+            <span>Share</span>
+          </button>
+          <button mat-menu-item (click)="printMethod()">
+            <mat-icon color="primary" aria-label="Print recipe">print</mat-icon>
+            <span>Print</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon color="primary" aria-label="Download recipe">file_download</mat-icon>
+            <span>Download</span>
+          </button>
+        </mat-menu>
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <!-- <img [src]="recipes[0].recipeImageUrl" [alt]="recipes[0].recipeDescription"> -->
+        <img mat-card-image src="../../../../assets/test-img.jpg" [alt]="recipes[0].recipeDescription">
+      </div>
+      <p style="text-align: center;"><i>{{recipes[0].recipeBlurb}}</i></p>
+      <h2 matListItemTitle class="heading-class">Ingredients</h2>
+      <mat-list>
+        @for (ingredient of recipes[0].recipeIngredients; track ingredient.ingredientId) {
+          <mat-list-item><p>{{ ingredient.ingredientDescription }}</p></mat-list-item>
+        }
+      </mat-list>
+      <h2 matListItemTitle class="heading-class">Recipe</h2>
+      <mat-list>
+        @for (step of recipes[0].recipeSteps; track step.recipeStepId) {
+          <mat-list-item><p>{{ step.recipeStepInstruction }}</p></mat-list-item>
+        }
+      </mat-list>
     </div>
-    <div style="display: flex; justify-content: center;">
-          <!-- <img [src]="recipes[0].recipeImageUrl" [alt]="recipes[0].recipeDescription"> -->
-      <img mat-card-image src="../../../../assets/test-img.jpg" [alt]="recipes[0].recipeDescription">
-    </div>
-    <p style="text-align: center;"><i>{{recipes[0].recipeBlurb}}</i></p>
-    <h2 matListItemTitle class="heading-class">Ingredients</h2>
-    <mat-list>
-      <mat-list-item *ngFor="let ingredient of recipes[0].recipeIngredients"><p>{{ ingredient.ingredientDescription }}</p></mat-list-item>
-    </mat-list>
-    <h2 matListItemTitle class="heading-class">Recipe</h2>
-    <mat-list>
-      <mat-list-item *ngFor="let step of recipes[0].recipeSteps"><p>{{ step.recipeStepInstruction }}</p></mat-list-item>
-    </mat-list>
-    </div>
-</span>
+  </span>
+}
 

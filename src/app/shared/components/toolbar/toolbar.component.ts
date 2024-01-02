@@ -1,5 +1,5 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, RecipeSearchComponent, MatMenuModule, LayoutModule],
+  imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, RecipeSearchComponent, MatMenuModule, LayoutModule],
   providers: [MatMenuTrigger],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']

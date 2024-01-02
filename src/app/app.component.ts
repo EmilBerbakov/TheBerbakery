@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './slide-animation';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
@@ -8,7 +8,7 @@ import { ToolbarComponent } from './shared/components/toolbar/toolbar.component'
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterModule, ToolbarComponent],
+  imports: [RouterOutlet, RouterModule, ToolbarComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [ slideInAnimation ]

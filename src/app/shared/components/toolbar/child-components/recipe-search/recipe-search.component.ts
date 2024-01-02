@@ -1,5 +1,5 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-recipe-search',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule],
+  imports: [MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule],
   providers: [RecipeService],
   templateUrl: './recipe-search.component.html',
   styleUrls: ['./recipe-search.component.scss']

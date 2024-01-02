@@ -14,18 +14,19 @@ export class RecipeService {
   router = inject(Router);
 
   getRecipeCards(searchParams: { recipeIDs?: number[], recipeName?: string }): Observable<Recipe[]>{
+    //* This logic is no longer needed because of transform functions for inputs
+    //console.log(searchParams.recipeIDs)
+    // let recipeIDNums: number[] = [];
 
-    let recipeIDNums: number[] = [];
-
-    if(searchParams?.recipeIDs && searchParams?.recipeIDs.length > 0) {
-      recipeIDNums = searchParams.recipeIDs.filter((number) => !Number.isNaN(Number(number))).map(number => Number(number));
-      recipeIDNums.length === 0 ? this.router.navigate(['*']): null;
-    }
+    // if(searchParams?.recipeIDs && searchParams?.recipeIDs.length > 0) {
+    //   recipeIDNums = searchParams.recipeIDs.filter((number) => !Number.isNaN(Number(number))).map(number => Number(number));
+    //   recipeIDNums.length === 0 ? this.router.navigate(['*']): null;
+    // }
 
 
     if (localStorage.getItem('recipes') !== null) {
       let recipes: Recipe[] = JSON.parse(localStorage.getItem('recipes') || '{}').filter((recipe: Recipe) => {
-        return recipeIDNums.includes(recipe.recipeId) || searchParams.recipeName === recipe.recipeName
+        return searchParams?.recipeIDs?.includes(recipe.recipeId) || searchParams?.recipeName === recipe?.recipeName
       });
       if (recipes.length > 0) {
         return of(recipes);
@@ -34,15 +35,15 @@ export class RecipeService {
 
       const URL = `${environment.urls.api}/RecipeCard.API/recipeCard/recipeCards`;
       let params = new HttpParams({
-        fromObject: {'recipeIds': searchParams.recipeIDs ?? []}
+        fromObject: {'recipeIds': searchParams?.recipeIDs ?? []}
       })
-      .set('recipeName', searchParams.recipeName ?? '');
+      .set('recipeName', searchParams?.recipeName ?? '');
       this.http.get<Recipe[]>(URL, { params }).pipe(first(),
       catchError(() => this.router.navigate(['*'])))
       .subscribe(value => {
         if (typeof value !== 'boolean') {
           this._recipeCards.next(value as Recipe[])
-          console.log(value)
+          //console.log(value)
         }
         });
       return this.recipeCards$
