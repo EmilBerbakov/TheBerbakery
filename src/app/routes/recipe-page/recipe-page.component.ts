@@ -16,8 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
   standalone: true,
   imports: [CommonModule, MatListModule, MatIconModule, MatButtonModule, MatMenuModule ],
   templateUrl: './recipe-page.component.html',
-  styleUrls: ['./recipe-page.component.scss'],
-  providers: [RecipeService]
+  styleUrls: ['./recipe-page.component.scss']
 })
 export default class  RecipePageComponent implements OnInit {
 
@@ -25,7 +24,6 @@ recipeService = inject(RecipeService);
 titleService = inject(Title);
 router = inject(Router);
 
-//! Even though I'm expecting a number here, passing it in to the recipe service converts it to a string
 @Input({ transform: numberAttribute }) recipeID!: number;
 recipe$?: Observable<Recipe[]>;
 url: string = this.router.url;
@@ -33,7 +31,8 @@ url: string = this.router.url;
 ngOnInit(): void {
   let recipeArray: number[] = [];
   recipeArray.push(this.recipeID);
-  this.recipe$ = this.recipeService.getRecipeCards({ recipeIDs: recipeArray }).pipe(filter(Boolean), tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));
+  this.recipeService.getRecipeCards({ recipeIDs: recipeArray });
+  this.recipe$ = this.recipeService.recipeCards$.pipe(filter(Boolean), tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));
 }
 
 printMethod(): void {

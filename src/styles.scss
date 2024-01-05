@@ -41,8 +41,7 @@ p {
 
 
 
-.dense-3 {
-  @include mat.all-component-densities(-3);
-}
+@include mat.all-component-densities(-3);
+
 
 

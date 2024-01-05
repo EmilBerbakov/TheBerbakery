@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, catchError, first, of, filter } from 'rxjs';
 import { environment } from '@environment';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RecipeService {
   _recipeCards = new BehaviorSubject<Recipe[]>([]);
   recipeCards$ = this._recipeCards.asObservable();
@@ -13,23 +13,16 @@ export class RecipeService {
   http = inject(HttpClient);
   router = inject(Router);
 
-  getRecipeCards(searchParams: { recipeIDs?: number[], recipeName?: string }): Observable<Recipe[]>{
-    //* This logic is no longer needed because of transform functions for inputs
-    //console.log(searchParams.recipeIDs)
-    // let recipeIDNums: number[] = [];
+  //! Since I moved to
 
-    // if(searchParams?.recipeIDs && searchParams?.recipeIDs.length > 0) {
-    //   recipeIDNums = searchParams.recipeIDs.filter((number) => !Number.isNaN(Number(number))).map(number => Number(number));
-    //   recipeIDNums.length === 0 ? this.router.navigate(['*']): null;
-    // }
-
-
+  getRecipeCards(searchParams: { recipeIDs?: number[], recipeName?: string }): void {
     if (localStorage.getItem('recipes') !== null) {
-      let recipes: Recipe[] = JSON.parse(localStorage.getItem('recipes') || '{}').filter((recipe: Recipe) => {
-        return searchParams?.recipeIDs?.includes(recipe.recipeId) || searchParams?.recipeName === recipe?.recipeName
+      let recipes = JSON.parse(localStorage.getItem('recipes') || '{}').filter((recipe: Recipe) => {
+        return searchParams?.recipeIDs?.includes(recipe.recipeId) || recipe?.recipeName.toUpperCase()?.includes(searchParams?.recipeName?.toUpperCase() as string)
       });
       if (recipes.length > 0) {
-        return of(recipes);
+        this._recipeCards.next(recipes);
+        return;
       }
     }
 
@@ -43,15 +36,13 @@ export class RecipeService {
       .subscribe(value => {
         if (typeof value !== 'boolean') {
           this._recipeCards.next(value as Recipe[])
-          //console.log(value)
         }
         });
-      return this.recipeCards$
 
 
   }
 
-  getRecentRecipeCards(topX?: number): Observable<Recipe[]> {
+  getRecentRecipeCards(topX?: number): void {
     const URL = `${environment.urls.api}/RecipeCard.API/recipeCard/recentRecipeCards`;
     let params = new HttpParams()
     .set('topX', topX ?? 12);
@@ -61,6 +52,5 @@ export class RecipeService {
         localStorage.setItem('recipes', JSON.stringify(values));
       }
     });
-    return this.recipeCards$;
   }
 }

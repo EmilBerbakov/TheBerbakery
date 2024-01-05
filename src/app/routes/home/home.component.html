@@ -1,9 +1,9 @@
 
 
-@if ((recipeCards$ | async) !== null) {
+@if (recipeService.recipeCards$ | async; as recipeCards) {
   <div>
     <div class="home-container">
-      @for (recipeCard of recipeService.recipeCards$ | async; track recipeCard.recipeId) {
+      @for (recipeCard of recipeCards; track recipeCard.recipeId) {
         <div>
           <app-recipe-card [recipeCard]="recipeCard" />
         </div>

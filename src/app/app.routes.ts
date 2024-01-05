@@ -14,6 +14,13 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'search/:recipe',
+    loadComponent: () => import('./routes/home/home.component'),
+    data: { animation: 'Home' }
+    //title: 'Search Results for :recipe'
+  },
+
+  {
     path: 'recipe/:recipeID',
     loadComponent: () => import('./routes/recipe-page/recipe-page.component'),
     data: { animation: 'Recipe' }
