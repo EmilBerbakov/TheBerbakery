@@ -1,0 +1,43 @@
+@mixin menu-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-characteristics {
+  position: fixed;
+  top: 0;
+  box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+  z-index: 9999999999;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 64px;
+}
+
+.toolbar-title {
+  text-decoration: none;
+  color: white;
+}
+
+#large-monitor-menu {
+  @include menu-view;
+}
+
+#small-monitor-menu {
+  display: none;
+}
+
+
+@media (max-width: 600px) {
+ #large-monitor-menu {
+  display: none;
+ }
+ #small-monitor-menu {
+  @include menu-view;
+ }
+}

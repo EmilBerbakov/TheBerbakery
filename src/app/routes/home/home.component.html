@@ -1,19 +1,21 @@
 
 
-  <div *ngIf="(recipeService.recipeCards$ | async) !== null; else loading">
+@if (recipeService.recipeCards$ | async; as recipeCards) {
+  <div>
     <div class="home-container">
-      <div *ngFor="let recipeCard of recipeService.recipeCards$ | async">
+      @for (recipeCard of recipeCards; track recipeCard.recipeId) {
+        <div>
           <app-recipe-card [recipeCard]="recipeCard" />
-      </div>
+        </div>
+      }
     </div>
-
   </div>
-  <ng-template #loading>
-    <div class="home-container">
-      <div *ngFor="let item of count">
+} @else {
+  <div class="home-container">
+    @for (item of count; track item) {
+      <div>
         <app-recipe-card [recipeCard]="null" class="wrapper"/>
       </div>
-    </div>
-  </ng-template>
-
-
+    }
+  </div>
+}
