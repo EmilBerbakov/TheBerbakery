@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 
 import { MatCardModule } from '@angular/material/card';
 import { Recipe } from '../../models/recipe.model';
@@ -15,13 +15,13 @@ import { Router } from '@angular/router';
 })
 
 export class RecipeCardComponent {
+  private router = inject(Router);
 
-  @Input({ required: true }) recipeCard?: Recipe | null;
 
-  constructor(private router: Router) {}
+  readonly recipeCard = input.required<(Recipe | null) | undefined>();
 
 
   recipeNavigation(): void {
-    this.router.navigate([`/recipe/${ this.recipeCard?.recipeId }`]);
+    this.router.navigate([`/recipe/${ this.recipeCard()?.recipeId }`]);
   }
 }

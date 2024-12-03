@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { RecipeCardComponent } from 'src/app/shared/components/recipe-card/recipe-card.component';
@@ -18,7 +18,7 @@ export default class HomeComponent implements OnInit, OnChanges {
   titleService = inject(Title);
   count = Array(12);
 
-  @Input({ transform: numberOrString }) recipe: unknown = null;
+  readonly recipe = input<unknown, any>(null, { transform: numberOrString });
 
   ngOnInit(): void {
     this.getRecipeResults();
@@ -31,15 +31,16 @@ export default class HomeComponent implements OnInit, OnChanges {
   }
 
   getRecipeResults(): void {
-    if (this.recipe === 0 || this.recipe) {
-      this.titleService.setTitle(`Search results for ${ this.recipe }`);
-      if (typeof this.recipe === 'number') {
+    const recipe = this.recipe();
+    if (recipe === 0 || recipe) {
+      this.titleService.setTitle(`Search results for ${ recipe }`);
+      if (typeof recipe === 'number') {
         let recipeArray: number[] = [];
-        recipeArray.push(this.recipe as number);
+        recipeArray.push(recipe as number);
         this.recipeService.getRecipeCards({ recipeIDs: recipeArray });
       }
       else {
-        this.recipeService.getRecipeCards({ recipeName: this.recipe as string });
+        this.recipeService.getRecipeCards({ recipeName: recipe as string });
       }
     }
     else {

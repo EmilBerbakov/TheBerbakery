@@ -5,7 +5,7 @@ There will be an on-hover expansion of the card, perhaps even expanding in such 
 -->
 
 
-@if (recipeCard; as recipeCard) {
+@if (recipeCard(); as recipeCard) {
   <span>
     <mat-card class="card-container" (click)="recipeNavigation()" style="max-width: 300px;">
       <mat-card-header>

@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 img {
   width: 100%;
 }
@@ -5,5 +7,11 @@ img {
 .card-container:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  color: var(--mat-sys-on-primary-fixed);
+  cursor: pointer;
+  @include mat.card-overrides((
+    elevated-container-color: var(--mat-sys-primary-fixed-dim)
+  ));
+
 }
 

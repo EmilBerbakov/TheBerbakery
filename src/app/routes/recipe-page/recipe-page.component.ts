@@ -1,5 +1,5 @@
 import { MatListModule } from '@angular/material/list';
-import { Component, Input, OnInit, inject, numberAttribute } from '@angular/core';
+import { Component, OnInit, inject, numberAttribute, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { Recipe } from 'src/app/shared/models/recipe.model';
@@ -23,13 +23,13 @@ recipeService = inject(RecipeService);
 titleService = inject(Title);
 router = inject(Router);
 
-@Input({ transform: numberAttribute }) recipeID!: number;
+readonly recipeID = input.required<number, unknown>({ transform: numberAttribute });
 recipe$?: Observable<Recipe[]>;
 url: string = this.router.url;
 
 ngOnInit(): void {
   let recipeArray: number[] = [];
-  recipeArray.push(this.recipeID);
+  recipeArray.push(this.recipeID());
   this.recipeService.getRecipeCards({ recipeIDs: recipeArray });
   this.recipe$ = this.recipeService.recipeCards$.pipe(filter(Boolean), tap(recipe => this.titleService.setTitle(`The Berbakery! - ${recipe[0].recipeName}`)));
 }

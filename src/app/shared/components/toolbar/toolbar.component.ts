@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
@@ -17,6 +17,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-  @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
-  breakpointObserver = inject(BreakpointObserver).observe(Breakpoints.Small).pipe(takeUntilDestroyed()).subscribe((width: BreakpointState) => width.matches ? this.trigger?.closeMenu(): null);
+  readonly trigger = viewChild.required(MatMenuTrigger);
+  isSmallScreen = signal(false);
+  breakpointObserver = inject(BreakpointObserver).observe(Breakpoints.Small).pipe(takeUntilDestroyed()).subscribe((width: BreakpointState) => {
+    this.isSmallScreen.set(width.matches)
+  }
+);
 }

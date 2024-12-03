@@ -1,7 +1,28 @@
+
+@use '@angular/material' as mat;
+
 @mixin menu-view {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+g {
+  fill: var(--mat-sys-on-primary-fixed);
+}
+
+#menu-button {
+  @include mat.icon-button-overrides ((
+    icon-color: var(--mat-sys-on-primary-fixed)
+  ))
+
+}
+
+.hack-element {
+  //height: 10%;
+  @include mat.menu-overrides((
+    item-label-text-font: --sys-label-small-font
+  ))
 }
 
 .toolbar-spacer {
@@ -21,23 +42,9 @@
 
 .toolbar-title {
   text-decoration: none;
-  color: white;
-}
-
-#large-monitor-menu {
-  @include menu-view;
-}
-
-#small-monitor-menu {
-  display: none;
-}
-
-
-@media (max-width: 600px) {
- #large-monitor-menu {
-  display: none;
- }
- #small-monitor-menu {
-  @include menu-view;
- }
+  color: var(--mat-sys-on-primary-fixed);
+  font: var(--mat-sys-headline-large);
+  &:on-hover {
+    font: var(--mat-sys-display-large);
+  }
 }
