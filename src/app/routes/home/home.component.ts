@@ -6,10 +6,9 @@ import { Router } from '@angular/router';
 import { numberOrString } from 'src/app/shared/transforms-or-pipes/number-or-string';
 import { Title } from '@angular/platform-browser';
 @Component({
-  standalone: true,
-  imports: [CommonModule, RecipeCardComponent],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    imports: [CommonModule, RecipeCardComponent],
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 
 

@@ -12,11 +12,10 @@ import { MatMenuModule } from '@angular/material/menu';
 
 
 @Component({
-  selector: 'app-recipe-page',
-  standalone: true,
-  imports: [CommonModule, MatListModule, MatIconModule, MatButtonModule, MatMenuModule ],
-  templateUrl: './recipe-page.component.html',
-  styleUrls: ['./recipe-page.component.scss']
+    selector: 'app-recipe-page',
+    imports: [CommonModule, MatListModule, MatIconModule, MatButtonModule, MatMenuModule],
+    templateUrl: './recipe-page.component.html',
+    styleUrls: ['./recipe-page.component.scss']
 })
 export default class  RecipePageComponent implements OnInit {
 

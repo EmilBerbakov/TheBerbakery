@@ -8,11 +8,10 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-recipe-card',
-  standalone: true,
-  imports: [MatCardModule, MatProgressBarModule, MatProgressSpinnerModule],
-  templateUrl: './recipe-card.component.html',
-  styleUrls: ['./recipe-card.component.scss'],
+    selector: 'app-recipe-card',
+    imports: [MatCardModule, MatProgressBarModule, MatProgressSpinnerModule],
+    templateUrl: './recipe-card.component.html',
+    styleUrls: ['./recipe-card.component.scss']
 })
 
 export class RecipeCardComponent {

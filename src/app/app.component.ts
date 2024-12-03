@@ -6,12 +6,11 @@ import { ToolbarComponent } from './shared/components/toolbar/toolbar.component'
 
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, RouterModule, ToolbarComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  animations: [ slideInAnimation ]
+    selector: 'app-root',
+    imports: [RouterOutlet, RouterModule, ToolbarComponent],
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    animations: [slideInAnimation]
 })
 export class AppComponent {
   title = 'TheBerbakery';

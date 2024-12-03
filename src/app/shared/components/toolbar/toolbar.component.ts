@@ -10,12 +10,11 @@ import { BreakpointObserver, BreakpointState, Breakpoints, LayoutModule } from '
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-toolbar',
-  standalone: true,
-  imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, RecipeSearchComponent, MatMenuModule, LayoutModule],
-  providers: [MatMenuTrigger],
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+    selector: 'app-toolbar',
+    imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, RecipeSearchComponent, MatMenuModule, LayoutModule],
+    providers: [MatMenuTrigger],
+    templateUrl: './toolbar.component.html',
+    styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
   @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;

@@ -12,11 +12,10 @@ import { debounceTime, distinctUntilChanged, startWith, tap } from 'rxjs';
 
 
 @Component({
-  selector: 'app-recipe-search',
-  standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule],
-  templateUrl: './recipe-search.component.html',
-  styleUrls: ['./recipe-search.component.scss']
+    selector: 'app-recipe-search',
+    imports: [MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule],
+    templateUrl: './recipe-search.component.html',
+    styleUrls: ['./recipe-search.component.scss']
 })
 
 
